@@ -67,6 +67,7 @@
                 <instance-variable name="round" sid="187799876739164" type="number" />
                 <instance-variable name="roundEnd" sid="557902121632725" type="number" />
                 <instance-variable name="speedT" sid="867028747946590" type="number" />
+                <instance-variable name="stopNum" sid="305477482387280" type="number" />
             </instance-variables>
             <behaviors>
                 <behavior-type name="Timer" sid="253785722949849">

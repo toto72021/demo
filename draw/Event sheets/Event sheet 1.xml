@@ -4,6 +4,8 @@
     <name>Event sheet 1</name>
     <events>
         <variable constant="0" name="indx" sid="255634218431033" static="0" type="number">0</variable>
+        <variable constant="0" name="lastN" sid="389050346847837" static="0" type="number">0</variable>
+        <variable constant="0" name="stopN" sid="295432963985591" static="0" type="number">0</variable>
         <event-block sid="370992174277702">
             <conditions>
                 <condition id="-2" name="On start of layout" sid="310316197046044" type="System" />
@@ -33,28 +35,24 @@
                 <condition id="0" name="On clicked" sid="279362735250705" type="Button" />
             </conditions>
             <actions>
-                <action disabled="1" id="-9" name="Set value" sid="334976190098812" type="System">
-                    <param id="0" name="Variable">indx</param>
-                    <param id="1" name="Value">0</param>
+                <action id="-9" name="Set value" sid="191072637900236" type="System">
+                    <param id="0" name="Variable">lastN</param>
+                    <param id="1" name="Value">int(S1.Count/1.4)</param>
                 </action>
                 <action id="-10" name="Set value" sid="151671042561367" type="S2">
                     <param id="0" name="Instance variable">randN</param>
                     <param id="1" name="Value">int(random(1,S1.Count+1))</param>
                 </action>
-                <action disabled="1" id="-10" name="Set value" sid="554253052666823" type="S2">
-                    <param id="0" name="Instance variable">randN</param>
-                    <param id="1" name="Value">S1.Count</param>
-                </action>
-                <action disabled="1" id="-10" name="Set value" sid="967112767867217" type="S2">
-                    <param id="0" name="Instance variable">randN</param>
-                    <param id="1" name="Value">1</param>
-                </action>
                 <action id="-10" name="Set value" sid="724661064284806" type="S2">
                     <param id="0" name="Instance variable">round</param>
-                    <param id="1" name="Value">int(random(2,5))</param>
+                    <param id="1" name="Value">int(random(3,6))</param>
                 </action>
                 <action id="-10" name="Set value" sid="760759483682080" type="S2">
                     <param id="0" name="Instance variable">roundEnd</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+                <action id="-10" name="Set value" sid="679563349669663" type="S2">
+                    <param id="0" name="Instance variable">stopNum</param>
                     <param id="1" name="Value">0</param>
                 </action>
                 <action id="-10" name="Set value" sid="983515144293096" type="S2">
@@ -74,7 +72,6 @@
         </event-block>
         <event-group description="" sid="664611975952685" title="t2">
             <sub-events>
-                <variable constant="0" name="lastN" sid="389050346847837" static="0" type="number">10</variable>
                 <variable constant="0" name="times" sid="106192965255464" static="0" type="number">1.8</variable>
                 <event-block sid="364731860714169">
                     <conditions>
@@ -114,9 +111,9 @@
                                             <param id="0" name="X">S1.X</param>
                                             <param id="1" name="Y">S1.Y</param>
                                         </action>
-                                        <action id="-10" name="Add to" sid="304024563341880" type="System">
+                                        <action id="-9" name="Set value" sid="304024563341880" type="System">
                                             <param id="0" name="Variable">indx</param>
-                                            <param id="1" name="Value">1</param>
+                                            <param id="1" name="Value">indx+1&lt;=S1.Count?indx+1:1</param>
                                         </action>
                                     </actions>
                                     <sub-events>
@@ -161,26 +158,76 @@
                                     <param id="1" name="Comparison">5</param>
                                     <param id="2" name="Value">Self.round</param>
                                 </condition>
-                                <condition id="-8" name="Compare two values" sid="918722083788633" type="System">
-                                    <param id="0" name="First value">(S1.Count+S2.randN-lastN)%S1.Count</param>
-                                    <param id="1" name="Comparison">0</param>
-                                    <param id="2" name="Second value">indx%S1.Count</param>
-                                </condition>
                             </conditions>
-                            <actions>
-                                <action id="-10" name="Set value" sid="202152740817148" type="S2">
-                                    <param id="0" name="Instance variable">start</param>
-                                    <param id="1" name="Value">2</param>
-                                </action>
-                            </actions>
-                        </event-block>
-                        <event-block sid="578777502690102">
-                            <conditions />
-                            <actions>
-                                <action id="0" name="Set text" sid="957572827687219" type="Text">
-                                    <param id="0" name="Text">&quot;Count:&quot;&amp;S1.Count&amp;&quot;&gt;&gt;&gt;&quot;&amp;S2.randN</param>
-                                </action>
-                            </actions>
+                            <actions />
+                            <sub-events>
+                                <variable constant="0" name="get" sid="463395565258800" static="0" type="number">0</variable>
+                                <event-block sid="461083989900243">
+                                    <conditions>
+                                        <condition id="-8" name="Compare two values" sid="229846197276936" type="System">
+                                            <param id="0" name="First value">S2.randN-lastN</param>
+                                            <param id="1" name="Comparison">3</param>
+                                            <param id="2" name="Second value">0</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions />
+                                    <sub-events>
+                                        <event-block sid="953083682184266">
+                                            <conditions>
+                                                <condition id="-8" name="Compare two values" sid="446877471912656" type="System">
+                                                    <param id="0" name="First value">(S2.randN-lastN)+S1.Count=0?1:(S2.randN-lastN)+S1.Count</param>
+                                                    <param id="1" name="Comparison">0</param>
+                                                    <param id="2" name="Second value">indx</param>
+                                                </condition>
+                                            </conditions>
+                                            <actions>
+                                                <action id="-9" name="Set value" sid="832944909349202" type="System">
+                                                    <param id="0" name="Variable">get</param>
+                                                    <param id="1" name="Value">1</param>
+                                                </action>
+                                            </actions>
+                                        </event-block>
+                                    </sub-events>
+                                </event-block>
+                                <event-block sid="201246505437470">
+                                    <conditions>
+                                        <condition id="-22" name="Else" sid="272436004545652" type="System" />
+                                    </conditions>
+                                    <actions />
+                                    <sub-events>
+                                        <event-block sid="309544395271228">
+                                            <conditions>
+                                                <condition id="-8" name="Compare two values" sid="498275749566386" type="System">
+                                                    <param id="0" name="First value">S2.randN-lastN</param>
+                                                    <param id="1" name="Comparison">0</param>
+                                                    <param id="2" name="Second value">indx</param>
+                                                </condition>
+                                            </conditions>
+                                            <actions>
+                                                <action id="-9" name="Set value" sid="725896509615911" type="System">
+                                                    <param id="0" name="Variable">get</param>
+                                                    <param id="1" name="Value">1</param>
+                                                </action>
+                                            </actions>
+                                        </event-block>
+                                    </sub-events>
+                                </event-block>
+                                <event-block sid="189776184057506">
+                                    <conditions>
+                                        <condition id="-14" name="Compare variable" sid="692087409201476" type="System">
+                                            <param id="0" name="Variable">get</param>
+                                            <param id="1" name="Comparison">0</param>
+                                            <param id="2" name="Value">1</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="-10" name="Set value" sid="133414280848588" type="S2">
+                                            <param id="0" name="Instance variable">start</param>
+                                            <param id="1" name="Value">2</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                            </sub-events>
                         </event-block>
                     </sub-events>
                 </event-block>
@@ -199,10 +246,19 @@
                                 <condition behavior="Timer" id="0" inverted="1" name="Is timer running" sid="891035889210351" type="S2">
                                     <param id="0" name="Timer">&quot;_stop&quot;</param>
                                 </condition>
+                                <condition id="-8" name="Compare two values" sid="637961356158421" type="System">
+                                    <param id="0" name="First value">S2.stopNum</param>
+                                    <param id="1" name="Comparison">2</param>
+                                    <param id="2" name="Second value">lastN</param>
+                                </condition>
                             </conditions>
                             <actions>
+                                <action id="-11" name="Add to" sid="576880022661960" type="S2">
+                                    <param id="0" name="Instance variable">stopNum</param>
+                                    <param id="1" name="Value">1</param>
+                                </action>
                                 <action behavior="Timer" id="2" name="Start" sid="200376036961495" type="S2">
-                                    <param id="0" name="Time">Self.speed</param>
+                                    <param id="0" name="Time">S2.stopNum/lastN*(s2.speed+S2.stopNum*0.08)</param>
                                     <param id="1" name="Timer">&quot;_stop&quot;</param>
                                     <param id="2" name="Repeat">1</param>
                                 </action>
@@ -222,75 +278,28 @@
                                             <param id="0" name="X">S1.X</param>
                                             <param id="1" name="Y">S1.Y</param>
                                         </action>
-                                        <action id="-10" name="Add to" sid="423763237402557" type="System">
+                                        <action id="-9" name="Set value" sid="918056957211275" type="System">
                                             <param id="0" name="Variable">indx</param>
-                                            <param id="1" name="Value">1</param>
+                                            <param id="1" name="Value">indx+1&lt;=S1.Count?indx+1:1</param>
                                         </action>
                                     </actions>
                                 </event-block>
-                                <event-block sid="431563162861162">
+                                <event-block sid="707187934530582">
                                     <conditions>
-                                        <condition id="-7" name="Compare instance variable" sid="300873131008889" type="S2">
-                                            <param id="0" name="Instance variable">speed</param>
-                                            <param id="1" name="Comparison">4</param>
-                                            <param id="2" name="Value">Self.speedT</param>
+                                        <condition id="-8" name="Compare two values" sid="681142968938490" type="System">
+                                            <param id="0" name="First value">S2.stopNum</param>
+                                            <param id="1" name="Comparison">5</param>
+                                            <param id="2" name="Second value">lastN</param>
                                         </condition>
                                     </conditions>
-                                    <actions />
-                                    <sub-events>
-                                        <event-block sid="646146747657640">
-                                            <conditions>
-                                                <condition id="-8" name="Compare two values" sid="648771905729712" type="System">
-                                                    <param id="0" name="First value">S2.randN</param>
-                                                    <param id="1" name="Comparison">1</param>
-                                                    <param id="2" name="Second value">S1.Count</param>
-                                                </condition>
-                                            </conditions>
-                                            <actions />
-                                            <sub-events>
-                                                <event-block sid="773371075985624">
-                                                    <conditions>
-                                                        <condition id="-8" name="Compare two values" sid="505293459938237" type="System">
-                                                            <param id="0" name="First value">indx%S1.Count</param>
-                                                            <param id="1" name="Comparison">0</param>
-                                                            <param id="2" name="Second value">S2.randN</param>
-                                                        </condition>
-                                                    </conditions>
-                                                    <actions>
-                                                        <action id="-10" name="Set value" sid="317334366653541" type="S2">
-                                                            <param id="0" name="Instance variable">start</param>
-                                                            <param id="1" name="Value">0</param>
-                                                        </action>
-                                                    </actions>
-                                                </event-block>
-                                            </sub-events>
-                                        </event-block>
-                                        <event-block sid="501508841444872">
-                                            <conditions>
-                                                <condition id="-22" name="Else" sid="162970812896543" type="System" />
-                                                <condition id="-8" name="Compare two values" sid="692778003825574" type="System">
-                                                    <param id="0" name="First value">indx%S1.Count</param>
-                                                    <param id="1" name="Comparison">0</param>
-                                                    <param id="2" name="Second value">0</param>
-                                                </condition>
-                                            </conditions>
-                                            <actions>
-                                                <action id="-10" name="Set value" sid="321163398202910" type="S2">
-                                                    <param id="0" name="Instance variable">start</param>
-                                                    <param id="1" name="Value">0</param>
-                                                </action>
-                                            </actions>
-                                        </event-block>
-                                    </sub-events>
-                                </event-block>
-                                <event-block sid="574559179208041">
-                                    <conditions>
-                                        <condition id="-22" name="Else" sid="429274175254226" type="System" />
-                                    </conditions>
                                     <actions>
-                                        <action id="-11" name="Add to" sid="176356185156016" type="S2">
-                                            <param id="0" name="Instance variable">speed</param>
-                                            <param id="1" name="Value">Self.speed^times</param>
+                                        <action id="-10" name="Set value" sid="171534106300540" type="S2">
+                                            <param id="0" name="Instance variable">start</param>
+                                            <param id="1" name="Value">3</param>
+                                        </action>
+                                        <action id="14" name="Log" sid="644675538923889" type="Browser">
+                                            <param id="0" name="Type">0</param>
+                                            <param id="1" name="Message">&quot;END&quot;</param>
                                         </action>
                                     </actions>
                                 </event-block>
@@ -300,5 +309,13 @@
                 </event-block>
             </sub-events>
         </event-group>
+        <event-block sid="872695108523016">
+            <conditions />
+            <actions>
+                <action id="0" name="Set text" sid="957572827687219" type="Text">
+                    <param id="0" name="Text">&quot;Count:&quot;&amp;S1.Count&amp; &quot; &gt; RadnN: &quot;&amp;S2.randN&amp;&quot;  &gt;lastN: &quot; &amp; lastN&amp;&quot; &gt;Index: &quot;&amp;indx </param>
+                </action>
+            </actions>
+        </event-block>
     </events>
 </c2eventsheet>
