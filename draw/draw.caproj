@@ -1,0 +1,124 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<c2project>
+    <name>draw</name>
+    <description>draw</description>
+    <version>1.0.0.01</version>
+    <author>totoyan</author>
+    <author-email>toto72021@163.com</author-email>
+    <author-website>http://</author-website>
+    <app-id>cn.imssr.draw</app-id>
+    <unique-id>2j8pwwrzt7yiu</unique-id>
+    <saved-with-version>24400</saved-with-version>
+    <used-plugins>
+        <plugin author="Scirra" id="Browser" version="1">Browser</plugin>
+        <plugin author="Scirra" id="Button" version="1">Button</plugin>
+        <plugin author="Rex.Rainbow" id="Rex_TimeLine" version="1">TimeLine</plugin>
+        <plugin author="Scirra" id="Sprite" version="1">Sprite</plugin>
+        <plugin author="Scirra" id="Text" version="1">Text</plugin>
+    </used-plugins>
+    <used-behaviors>
+        <behavior author="Rex.Rainbow" id="Rex_Timer" version="1">Timer</behavior>
+    </used-behaviors>
+    <used-effects />
+    <configurations>
+        <configuration exporter-descname="HTML5" exporter-id="html5" name="HTML5" />
+    </configurations>
+    <window-size>
+        <width>854</width>
+        <height>480</height>
+    </window-size>
+    <pixel-rounding>0</pixel-rounding>
+    <preview-effects>1</preview-effects>
+    <use-loader-layout>0</use-loader-layout>
+    <configuration-settings>
+        <prop name="Clear background">Yes</prop>
+        <prop name="Downscaling">Medium quality</prop>
+        <prop name="Enable WebGL">On</prop>
+        <prop name="Fullscreen in browser">Letterbox scale</prop>
+        <prop name="Fullscreen scaling">High quality</prop>
+        <prop name="Loader style">Construct 2 splash</prop>
+        <prop name="Orientations">Any</prop>
+        <prop name="Pause on unfocus">No</prop>
+        <prop name="Physics engine">Box2D asm.js</prop>
+        <prop name="Preload sounds">Yes</prop>
+        <prop name="Preview browser">Chrome</prop>
+        <prop name="Sampling">Linear</prop>
+        <prop name="Use high-DPI display">Yes</prop>
+    </configuration-settings>
+    <object-folder>
+        <object-type name="S1" sid="176754120347501">
+            <plugin id="Sprite" />
+            <container>
+                <type>S1</type>
+                <type>Text2</type>
+            </container>
+            <animation-folder>
+                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="346456834513501" speed="5">
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
+                </animation>
+            </animation-folder>
+        </object-type>
+        <object-type name="S2" sid="253075575907283">
+            <plugin id="Sprite" />
+            <instance-variables>
+                <instance-variable name="randN" sid="382947606026163" type="number" />
+                <instance-variable name="speed" sid="755585507392252" type="number" />
+                <instance-variable name="start" sid="827841189955951" type="number" />
+                <instance-variable name="round" sid="187799876739164" type="number" />
+                <instance-variable name="roundEnd" sid="557902121632725" type="number" />
+                <instance-variable name="speedT" sid="867028747946590" type="number" />
+            </instance-variables>
+            <behaviors>
+                <behavior-type name="Timer" sid="253785722949849">
+                    <behavior id="Rex_Timer" />
+                </behavior-type>
+            </behaviors>
+            <animation-folder>
+                <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="976054384112348" speed="5">
+                    <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
+                </animation>
+            </animation-folder>
+        </object-type>
+        <object-type global="1" name="TimeLine" sid="314886246982244">
+            <plugin id="Rex_TimeLine" />
+        </object-type>
+        <object-type name="Button" sid="239226590813640">
+            <plugin id="Button" />
+        </object-type>
+        <object-type name="Text" sid="365425709797822">
+            <plugin id="Text" />
+        </object-type>
+        <object-type name="Text2" sid="422978566329076">
+            <plugin id="Text" />
+            <container>
+                <type>S1</type>
+                <type>Text2</type>
+            </container>
+        </object-type>
+        <object-type name="Browser" sid="961498315233243">
+            <plugin id="Browser" />
+        </object-type>
+    </object-folder>
+    <families />
+    <layout-folder>
+        <layout>Layout 1.xml</layout>
+    </layout-folder>
+    <event-folder>
+        <event-sheet>Event sheet 1.xml</event-sheet>
+    </event-folder>
+    <global-instances>
+        <global-instance type="Browser" uid="30" />
+    </global-instances>
+    <sounds-folder />
+    <music-folder />
+    <files-folder>
+        <file-folder name="Icons">
+            <file name="icon-16.png" />
+            <file name="icon-32.png" />
+            <file name="icon-114.png" />
+            <file name="icon-128.png" />
+            <file name="icon-256.png" />
+            <file name="loading-logo.png" />
+        </file-folder>
+    </files-folder>
+</c2project>
